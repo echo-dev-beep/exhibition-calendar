@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>한국 미술관 전시 캘린더</title>
+    <link rel="stylesheet" href="./styles.css?v=20260608-2" />
+  </head>
+  <body>
+    <aside class="sidebar" id="sidebar">
+      <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="좌측 패널 접기">‹</button>
+      <div class="brand">
+        <p class="eyebrow">Exhibition Calendar</p>
+        <h1>한국 미술관 전시 일정</h1>
+        <p class="meta">최종 확인: 2026.06.08</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <span>미술관 선택</span>
+          <button id="selectAll" type="button">전체</button>
+        </div>
+        <div id="museumFilters" class="filter-list"></div>
+      </div>
+
+      <div class="panel compact">
+        <p class="small-title">전시 메모</p>
+        <div class="side-stats">
+          <p><span id="visibleCount">0</span> 표시 중인 전시</p>
+          <p><span id="ongoingCount">0</span> 현재 진행중</p>
+          <p><span id="venueCount">0</span> 선택된 미술관</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app">
+      <section class="spotlight-panel">
+        <div class="spotlight-panel-head">
+          <div>
+            <p class="eyebrow" id="spotlightEyebrow">Today</p>
+            <h2 id="spotlightTitle">오늘의 전시</h2>
+          </div>
+          <div class="segmented small" role="tablist" aria-label="상단 전시 목록 전환">
+            <button id="todayTabBtn" class="active" type="button">오늘</button>
+            <button id="weekTabBtn" type="button">이번 주</button>
+          </div>
+        </div>
+        <div class="spotlight-meta">
+          <span id="spotlightCount"></span>
+          <span id="spotlightRange"></span>
+        </div>
+        <div id="spotlightExhibitions" class="spotlight-exhibitions"></div>
+      </section>
+
+      <header class="toolbar">
+        <div>
+          <p class="today-label" id="todayLabel"></p>
+          <h2 id="rangeTitle"></h2>
+        </div>
+        <div class="controls">
+          <button class="icon-btn" id="prevBtn" type="button" aria-label="이전 기간">‹</button>
+          <button class="pill" id="todayBtn" type="button">오늘</button>
+          <button class="icon-btn" id="nextBtn" type="button" aria-label="다음 기간">›</button>
+          <div class="segmented" role="tablist" aria-label="보기 전환">
+            <button id="monthViewBtn" class="active" type="button">월별</button>
+            <button id="weekViewBtn" type="button">주별</button>
+          </div>
+        </div>
+      </header>
+
+      <section id="calendar" class="calendar" aria-live="polite"></section>
+
+      <div class="calendar-legend" aria-label="달력 범례">
+        <div class="legend-row">
+          <span class="swatch filled"></span>
+          <span>현재 진행중</span>
+        </div>
+        <div class="legend-row">
+          <span class="swatch hollow"></span>
+          <span>종료/예정</span>
+        </div>
+      </div>
+
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
