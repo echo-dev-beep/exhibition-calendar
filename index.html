@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>한국 미술관 전시 캘린더</title>
-    <link rel="stylesheet" href="./styles.css?v=20260608-2" />
+    <link rel="stylesheet" href="./styles.css?v=20260608-3" />
   </head>
   <body>
     <aside class="sidebar" id="sidebar">
@@ -34,22 +34,27 @@
     </aside>
 
     <main class="app">
-      <section class="spotlight-panel">
+      <section id="spotlightPanel" class="spotlight-panel">
         <div class="spotlight-panel-head">
           <div>
             <p class="eyebrow" id="spotlightEyebrow">Today</p>
             <h2 id="spotlightTitle">오늘의 전시</h2>
           </div>
-          <div class="segmented small" role="tablist" aria-label="상단 전시 목록 전환">
-            <button id="todayTabBtn" class="active" type="button">오늘</button>
-            <button id="weekTabBtn" type="button">이번 주</button>
+          <div class="spotlight-actions">
+            <div class="segmented small" role="tablist" aria-label="상단 전시 목록 전환">
+              <button id="todayTabBtn" class="active" type="button">오늘</button>
+              <button id="weekTabBtn" type="button">이번 주</button>
+            </div>
+            <button id="spotlightToggle" class="icon-btn spotlight-toggle" type="button" aria-label="상단 전시 목록 접기" aria-expanded="true" aria-controls="spotlightBody">⌃</button>
           </div>
         </div>
-        <div class="spotlight-meta">
-          <span id="spotlightCount"></span>
-          <span id="spotlightRange"></span>
+        <div id="spotlightBody">
+          <div class="spotlight-meta">
+            <span id="spotlightCount"></span>
+            <span id="spotlightRange"></span>
+          </div>
+          <div id="spotlightExhibitions" class="spotlight-exhibitions"></div>
         </div>
-        <div id="spotlightExhibitions" class="spotlight-exhibitions"></div>
       </section>
 
       <header class="toolbar">
@@ -83,6 +88,6 @@
 
     </main>
 
-    <script src="./script.js"></script>
+    <script src="./script.js?v=20260608-3"></script>
   </body>
 </html>

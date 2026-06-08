@@ -189,18 +189,45 @@ const events = [
   }
 ];
 
+const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
+let today = getKstToday();
+
 const state = {
   view: "month",
   spotlight: "today",
-  cursor: new Date(2026, 5, 8),
+  spotlightCollapsed: false,
+  cursor: new Date(today),
   selected: new Set(museums.map((museum) => museum.id))
 };
 
-const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
-const today = stripTime(new Date(2026, 5, 8));
-
 function qs(id) {
   return document.getElementById(id);
+}
+
+function getKstDateParts(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+  const byType = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return {
+    year: Number(byType.year),
+    month: Number(byType.month),
+    day: Number(byType.day)
+  };
+}
+
+function getKstToday(date = new Date()) {
+  const { year, month, day } = getKstDateParts(date);
+  return new Date(year, month - 1, day);
+}
+
+function msUntilNextKstDay(date = new Date()) {
+  const { year, month, day } = getKstDateParts(date);
+  const nextKstMidnightUtc = Date.UTC(year, month - 1, day + 1) - 9 * 60 * 60 * 1000;
+  return Math.max(1000, nextKstMidnightUtc - date.getTime() + 250);
 }
 
 function parseDate(value) {
@@ -286,6 +313,10 @@ function render() {
   qs("weekViewBtn").classList.toggle("active", state.view === "week");
   qs("todayTabBtn").classList.toggle("active", state.spotlight === "today");
   qs("weekTabBtn").classList.toggle("active", state.spotlight === "week");
+  qs("spotlightPanel").classList.toggle("collapsed", state.spotlightCollapsed);
+  qs("spotlightToggle").textContent = state.spotlightCollapsed ? "⌄" : "⌃";
+  qs("spotlightToggle").setAttribute("aria-expanded", String(!state.spotlightCollapsed));
+  qs("spotlightToggle").setAttribute("aria-label", state.spotlightCollapsed ? "상단 전시 목록 펼치기" : "상단 전시 목록 접기");
   if (state.view === "month") renderMonth();
   else renderWeek();
   renderSpotlightPanel();
@@ -442,6 +473,11 @@ qs("weekTabBtn").addEventListener("click", () => {
   render();
 });
 
+qs("spotlightToggle").addEventListener("click", () => {
+  state.spotlightCollapsed = !state.spotlightCollapsed;
+  render();
+});
+
 qs("sidebarToggle").addEventListener("click", () => {
   document.body.classList.toggle("sidebar-collapsed");
   const collapsed = document.body.classList.contains("sidebar-collapsed");
@@ -477,5 +513,28 @@ qs("selectAll").addEventListener("click", () => {
   render();
 });
 
+function refreshTodayFromKst() {
+  const previousToday = today;
+  today = getKstToday();
+  if (state.cursor.getTime() === previousToday.getTime()) {
+    state.cursor = new Date(today);
+  }
+  render();
+}
+
+function scheduleKstRerender() {
+  window.setTimeout(() => {
+    refreshTodayFromKst();
+    scheduleKstRerender();
+  }, msUntilNextKstDay());
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) refreshTodayFromKst();
+});
+
+window.addEventListener("focus", refreshTodayFromKst);
+
 buildFilters();
 render();
+scheduleKstRerender();

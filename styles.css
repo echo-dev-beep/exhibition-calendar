@@ -426,6 +426,21 @@ body.sidebar-collapsed .sidebar > :not(.sidebar-toggle) {
   gap: 16px;
 }
 
+.spotlight-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spotlight-toggle {
+  width: 34px;
+  height: 34px;
+}
+
+.spotlight-panel.collapsed #spotlightBody {
+  display: none;
+}
+
 .spotlight-panel h2 {
   margin: 3px 0 0;
   font-size: var(--text);
@@ -624,6 +639,15 @@ body.sidebar-collapsed .sidebar > :not(.sidebar-toggle) {
   .toolbar {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .spotlight-panel-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .spotlight-actions {
+    justify-content: space-between;
   }
 
   .day-cell {
