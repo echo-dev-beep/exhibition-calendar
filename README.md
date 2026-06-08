@@ -9,7 +9,7 @@
 GitHub Pages에 배포하면 아래 형식의 주소로 어디서든 접속할 수 있습니다.
 
 ```text
-https://<github-username>.github.io/exhibition-calendar/
+https://echo-dev-beep.github.io/exhibition-calendar/
 ```
 
 ## 구성
