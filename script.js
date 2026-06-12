@@ -1,4 +1,4 @@
-const museums = [
+const fallbackMuseums = [
   { id: "mmca-seoul", name: "국립현대미술관 서울관", area: "서울", color: "#111111", abbr: "MMCA", closedWeekdays: [] },
   { id: "mmca-gwacheon", name: "국립현대미술관 과천관", area: "과천", color: "#111111", abbr: "MMCA", closedWeekdays: [1] },
   { id: "mmca-deoksu", name: "국립현대미술관 덕수궁관", area: "서소문/덕수궁", color: "#111111", abbr: "MMCA", closedWeekdays: [1] },
@@ -10,7 +10,7 @@ const museums = [
   { id: "leeum", name: "리움미술관", area: "한남동", color: "#5b5b5b", abbr: "리움", closedWeekdays: [1] }
 ];
 
-const events = [
+const fallbackEvents = [
   {
     title: "데이미언 허스트",
     museum: "mmca-seoul",
@@ -190,6 +190,13 @@ const events = [
 ];
 
 const weekdays = ["월", "화", "수", "목", "금", "토", "일"];
+const dataFiles = {
+  events: "./data/events.json",
+  closures: "./data/closures.json"
+};
+let museums = fallbackMuseums.map((museum) => ({ ...museum }));
+let events = fallbackEvents.map((event) => ({ ...event }));
+let dataUpdatedAt = null;
 let today = getKstToday();
 
 const state = {
@@ -224,6 +231,43 @@ function getKstToday(date = new Date()) {
   return new Date(year, month - 1, day);
 }
 
+async function fetchJson(path) {
+  const response = await fetch(path, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Unable to load ${path}`);
+  return response.json();
+}
+
+function applyEventData(data) {
+  if (!Array.isArray(data?.events)) return;
+  events = data.events.map((event) => ({ ...event }));
+  dataUpdatedAt = data.updatedAt || dataUpdatedAt;
+}
+
+function applyClosureData(data) {
+  if (!Array.isArray(data?.closures)) return;
+  const closureByMuseum = new Map(data.closures.map((closure) => [closure.museum, closure]));
+  museums = fallbackMuseums.map((museum) => {
+    const closure = closureByMuseum.get(museum.id);
+    if (!closure) return { ...museum };
+    return {
+      ...museum,
+      closedWeekdays: closure.closedWeekdays || [],
+      closedDates: closure.closedDates || []
+    };
+  });
+  dataUpdatedAt = data.updatedAt || dataUpdatedAt;
+}
+
+async function loadCalendarData() {
+  try {
+    const [eventData, closureData] = await Promise.all([fetchJson(dataFiles.events), fetchJson(dataFiles.closures)]);
+    applyEventData(eventData);
+    applyClosureData(closureData);
+  } catch (error) {
+    console.warn("외부 캘린더 데이터를 불러오지 못해 내장 데이터를 사용합니다.", error);
+  }
+}
+
 function msUntilNextKstDay(date = new Date()) {
   const { year, month, day } = getKstDateParts(date);
   const nextKstMidnightUtc = Date.UTC(year, month - 1, day + 1) - 9 * 60 * 60 * 1000;
@@ -256,6 +300,10 @@ function endOfWeek(date) {
 
 function formatDate(date) {
   return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function formatISODate(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
 function eventStatus(event) {
@@ -310,7 +358,8 @@ function visibleEvents() {
 
 function isMuseumClosedOn(museumId, date) {
   const museum = museumById(museumId);
-  return museum?.closedWeekdays?.includes(date.getDay()) || false;
+  if (!museum) return false;
+  return museum.closedWeekdays?.includes(date.getDay()) || museum.closedDates?.includes(formatISODate(date)) || false;
 }
 
 function eventIsOpenOn(event, date) {
@@ -602,6 +651,9 @@ document.addEventListener("visibilitychange", () => {
 
 window.addEventListener("focus", refreshTodayFromKst);
 
-buildFilters();
-render();
-scheduleKstRerender();
+loadCalendarData().finally(() => {
+  state.selected = new Set(museums.map((museum) => museum.id));
+  buildFilters();
+  render();
+  scheduleKstRerender();
+});

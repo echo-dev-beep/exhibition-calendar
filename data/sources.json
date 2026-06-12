@@ -1,0 +1,68 @@
+{
+  "updatedAt": "2026-06-12T12:00:00+09:00",
+  "sources": [
+    {
+      "museum": "mmca-seoul",
+      "name": "국립현대미술관 서울관",
+      "eventsUrl": "https://www.mmca.go.kr/exhibitions/progressList.do",
+      "closuresUrl": "https://www.mmca.go.kr/visitingInfo/visitingInfo.do",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "mmca-gwacheon",
+      "name": "국립현대미술관 과천관",
+      "eventsUrl": "https://www.mmca.go.kr/exhibitions/progressList.do",
+      "closuresUrl": "https://www.mmca.go.kr/visitingInfo/visitingInfo.do",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "mmca-deoksu",
+      "name": "국립현대미술관 덕수궁관",
+      "eventsUrl": "https://www.mmca.go.kr/exhibitions/progressList.do",
+      "closuresUrl": "https://www.mmca.go.kr/visitingInfo/visitingInfo.do",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "sema",
+      "name": "서울시립미술관",
+      "eventsUrl": "https://sema.seoul.go.kr/kr/whatson/landing",
+      "closuresUrl": "https://sema.seoul.go.kr/kr/visit/landing",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "ilmin",
+      "name": "일민미술관",
+      "eventsUrl": "https://ilmin.org/exhibition/",
+      "closuresUrl": "https://ilmin.org/visit/",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "daelim",
+      "name": "대림미술관",
+      "eventsUrl": "https://www.daelimmuseum.org/exhibition/current",
+      "closuresUrl": "https://www.daelimmuseum.org/visit",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "pompidou",
+      "name": "퐁피두센터 한화",
+      "eventsUrl": "https://www.centrepompidou-hanwha.kr/",
+      "closuresUrl": "https://www.centrepompidou-hanwha.kr/",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "dmuseum",
+      "name": "디뮤지엄",
+      "eventsUrl": "https://www.daelimmuseum.org/exhibition/current",
+      "closuresUrl": "https://www.daelimmuseum.org/visit",
+      "autoMergeEvents": false
+    },
+    {
+      "museum": "leeum",
+      "name": "리움미술관",
+      "eventsUrl": "https://www.leeumhoam.org/leeum/exhibition",
+      "closuresUrl": "https://www.leeumhoam.org/leeum/visit",
+      "autoMergeEvents": false
+    }
+  ]
+}

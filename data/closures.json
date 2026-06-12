@@ -1,0 +1,84 @@
+{
+  "updatedAt": "2026-06-12T15:30:58+09:00",
+  "closures": [
+    {
+      "museum": "mmca-seoul",
+      "name": "국립현대미술관 서울관",
+      "closedWeekdays": [],
+      "closedDates": [],
+      "notes": "정기 휴관 없음 기준. 임시 휴관은 추후 자동 갱신 대상입니다."
+    },
+    {
+      "museum": "mmca-gwacheon",
+      "name": "국립현대미술관 과천관",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "정기 휴관일 기준. 공휴일 예외와 임시 휴관은 추후 자동 갱신 대상입니다."
+    },
+    {
+      "museum": "mmca-deoksu",
+      "name": "국립현대미술관 덕수궁관",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "정기 휴관일 기준. 공휴일 예외와 임시 휴관은 추후 자동 갱신 대상입니다."
+    },
+    {
+      "museum": "sema",
+      "name": "서울시립미술관",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "공식 출처 확인 기반. 임시 휴관일은 출처에서 구조화 가능할 때 closedDates에 반영됩니다."
+    },
+    {
+      "museum": "ilmin",
+      "name": "일민미술관",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "공식 출처 확인 기반. 임시 휴관일은 출처에서 구조화 가능할 때 closedDates에 반영됩니다."
+    },
+    {
+      "museum": "daelim",
+      "name": "대림미술관",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "공식 출처 확인 기반. 임시 휴관일은 출처에서 구조화 가능할 때 closedDates에 반영됩니다."
+    },
+    {
+      "museum": "pompidou",
+      "name": "퐁피두센터 한화",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "공식 출처 확인 기반. 임시 휴관일은 출처에서 구조화 가능할 때 closedDates에 반영됩니다."
+    },
+    {
+      "museum": "dmuseum",
+      "name": "디뮤지엄",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "공식 출처 확인 기반. 임시 휴관일은 출처에서 구조화 가능할 때 closedDates에 반영됩니다."
+    },
+    {
+      "museum": "leeum",
+      "name": "리움미술관",
+      "closedWeekdays": [
+        1
+      ],
+      "closedDates": [],
+      "notes": "정기 휴관일 기준. 공휴일 예외와 임시 휴관은 추후 자동 갱신 대상입니다."
+    }
+  ]
+}

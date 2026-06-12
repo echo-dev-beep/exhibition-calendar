@@ -1,0 +1,181 @@
+{
+  "updatedAt": "2026-06-12T15:30:58+09:00",
+  "events": [
+    {
+      "title": "취향가옥 2: Art in Life, Life in Art 2",
+      "museum": "dmuseum",
+      "venue": "디뮤지엄",
+      "start": "2025-06-28",
+      "end": "2026-02-22",
+      "url": "https://www.daelimmuseum.org/ticket/reservation/PRG202506050001"
+    },
+    {
+      "title": "페트라 콜린스: fangirl",
+      "museum": "daelim",
+      "venue": "대림미술관",
+      "start": "2025-08-29",
+      "end": "2026-02-15",
+      "url": "https://daelimmuseum.org/ticket/reservation/PRG202508130001"
+    },
+    {
+      "title": "MMCA 해외 명작: 수련과 샹들리에",
+      "museum": "mmca-gwacheon",
+      "venue": "과천",
+      "start": "2025-10-02",
+      "end": "2027-01-03",
+      "url": "https://www.mmca.go.kr/"
+    },
+    {
+      "title": "In the Middle Voice: 다섯 개의 움직임",
+      "museum": "leeum",
+      "venue": "M2 2층과 야외",
+      "start": "2025-11-25",
+      "end": "2026-07-31",
+      "url": "https://www.leeumhoam.org/leeum?lang2=kor"
+    },
+    {
+      "title": "티노 세갈",
+      "museum": "leeum",
+      "venue": "M2, 로비",
+      "start": "2026-03-03",
+      "end": "2026-06-28",
+      "url": "https://www.leeumhoam.org/leeum/exhibition/92?params=Y"
+    },
+    {
+      "title": "데이미언 허스트",
+      "museum": "mmca-seoul",
+      "venue": "서울 지하1층, 3-5전시실, 서울박스, MMCA 스튜디오",
+      "start": "2026-03-20",
+      "end": "2026-06-28",
+      "url": "https://www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhId=202601060002023"
+    },
+    {
+      "title": "《기.기.기: 동시대와 시행착오》",
+      "museum": "ilmin",
+      "venue": "2, 3전시실 및 프로젝트 룸",
+      "start": "2026-04-01",
+      "end": "2026-05-31",
+      "url": "https://ilmin.org/exhibition/2026_gi-gi-gi/"
+    },
+    {
+      "title": "데이미언 허스트와 YBA",
+      "museum": "mmca-seoul",
+      "venue": "서울 MMCA영상관",
+      "start": "2026-04-01",
+      "end": "2026-06-06",
+      "url": "https://www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhFlag=1&exhId=202601060002025"
+    },
+    {
+      "title": "MMCA 다원예술 2026: 탐정의 시간",
+      "museum": "mmca-seoul",
+      "venue": "서울 MMCA 다원공간",
+      "start": "2026-04-01",
+      "end": "2026-12-06",
+      "url": "https://www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhId=202601060002024"
+    },
+    {
+      "title": "가브리엘 오로즈코 정원",
+      "museum": "leeum",
+      "venue": "야외",
+      "start": "2026-04-03",
+      "end": "2026-12-31",
+      "url": "https://www.leeumhoam.org/leeum?lang2=kor"
+    },
+    {
+      "title": "그래도 해보던 날들",
+      "museum": "mmca-seoul",
+      "venue": "서울 MMCA 아이공간",
+      "start": "2026-04-17",
+      "end": "2026-08-30",
+      "url": "https://www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhFlag=1&exhId=202603300002070"
+    },
+    {
+      "title": "《비트린: 김나영 & 그레고리 마스》",
+      "museum": "ilmin",
+      "venue": "야외 비트린",
+      "start": "2026-04-20",
+      "end": "2026-07-20",
+      "url": "https://ilmin.org/program/2026_04_sp_vitrine_nayoungim-gregory-maass/"
+    },
+    {
+      "title": "MMCA 과천 상설전 «한국근현대미술 I»",
+      "museum": "mmca-gwacheon",
+      "venue": "과천",
+      "start": "2026-04-22",
+      "end": "2027-06-27",
+      "url": "https://www.mmca.go.kr/"
+    },
+    {
+      "title": "MMCA 과천 상설전 «한국근현대미술 II»",
+      "museum": "mmca-gwacheon",
+      "venue": "과천",
+      "start": "2026-04-22",
+      "end": "2027-06-27",
+      "url": "https://www.mmca.go.kr/"
+    },
+    {
+      "title": "난지미술창작스튜디오 20주년 기념전 《사랑의 기원》",
+      "museum": "sema",
+      "venue": "서소문본관 2-3층",
+      "start": "2026-04-30",
+      "end": "2026-09-06",
+      "url": "https://sema.seoul.go.kr/en/whatson/exhibition/detail?acadmyEeNo=0&evtNo=0&exNo=1526751&glolangType=ENG"
+    },
+    {
+      "title": "《오프 더 화이트: 주름과 망루》",
+      "museum": "ilmin",
+      "venue": "1전시실",
+      "start": "2026-05-01",
+      "end": "2026-07-12",
+      "url": "https://ilmin.org/exhibition/2026_off-the-white-1/"
+    },
+    {
+      "title": "다른 공간 안으로: 여성 작가들의 공감각적 환경 1956-1976",
+      "museum": "leeum",
+      "venue": "블랙박스, 그라운드갤러리",
+      "start": "2026-05-05",
+      "end": "2026-11-29",
+      "url": "https://www.leeumhoam.org/leeum/exhibition/93"
+    },
+    {
+      "title": "로드 무비: 1945년 이후 한·일 미술",
+      "museum": "mmca-gwacheon",
+      "venue": "과천",
+      "start": "2026-05-14",
+      "end": "2026-09-27",
+      "url": "https://www.mmca.go.kr/"
+    },
+    {
+      "title": "Inaugural Exhibition - New Media Collection",
+      "museum": "sema",
+      "venue": "서울시립 서서울미술관",
+      "start": "2026-05-14",
+      "end": "2026-07-26",
+      "url": "https://sema.seoul.go.kr/en/whatson/exhibition/detail?exNo=1536015"
+    },
+    {
+      "title": "2026 한국 근대 거장전 《유영국: 산은 내 안에 있다》",
+      "museum": "sema",
+      "venue": "서소문본관",
+      "start": "2026-05-19",
+      "end": "2026-10-25",
+      "url": "https://sema.seoul.go.kr/kr/whatson/landing"
+    },
+    {
+      "title": "2026 SeMA-프로젝트 A",
+      "museum": "sema",
+      "venue": "서울시립 미술아카이브 옥상정원",
+      "start": "2026-05-20",
+      "end": "2026-12-31",
+      "url": "https://sema.seoul.go.kr/semaaa/front/program/view.do?menuId=10&pageIndex=1&proSeq=177&proType=002"
+    },
+    {
+      "title": "큐비스트: 시각의 혁신가들",
+      "museum": "pompidou",
+      "venue": "퐁피두센터 한화",
+      "start": "2026-06-04",
+      "end": "2026-10-04",
+      "url": "https://www.centrepompidou-hanwha.kr/"
+    }
+  ]
+}
