@@ -651,7 +651,7 @@ body.sidebar-collapsed .sidebar > :not(.sidebar-toggle) {
     position: fixed;
     inset: 0;
     background: rgba(30, 36, 40, 0.24);
-    z-index: 8;
+    z-index: 20;
   }
 
   .sidebar {
@@ -661,6 +661,11 @@ body.sidebar-collapsed .sidebar > :not(.sidebar-toggle) {
     border-right: 0;
     border-bottom: 1px solid var(--line);
     overflow: visible;
+  }
+
+  body.mobile-filter-open .sidebar {
+    position: relative;
+    z-index: 21;
   }
 
   .sidebar-toggle {
@@ -706,7 +711,7 @@ body.sidebar-collapsed .sidebar > :not(.sidebar-toggle) {
     left: 16px;
     right: 16px;
     top: 18px;
-    z-index: 9;
+    z-index: 22;
     max-height: calc(100dvh - 36px);
     overflow: auto;
     margin: 0;
