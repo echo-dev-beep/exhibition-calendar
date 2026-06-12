@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>한국 미술관 전시 캘린더</title>
-    <link rel="stylesheet" href="./styles.css?v=20260608-3" />
+    <link rel="stylesheet" href="./styles.css?v=20260612-3" />
   </head>
   <body>
     <aside class="sidebar" id="sidebar">
@@ -12,13 +12,19 @@
       <div class="brand">
         <p class="eyebrow">Exhibition Calendar</p>
         <h1>한국 미술관 전시 일정</h1>
-        <p class="meta">최종 확인: 2026.06.08</p>
+        <button id="mobileFilterOpen" class="mobile-filter-button" type="button" aria-expanded="false" aria-controls="filterPanel">
+          <span aria-hidden="true">☰</span>
+          미술관 선택
+        </button>
       </div>
 
-      <div class="panel">
+      <div id="filterPanel" class="panel filter-panel" aria-labelledby="filterPanelTitle">
         <div class="panel-title">
-          <span>미술관 선택</span>
-          <button id="selectAll" type="button">전체</button>
+          <span id="filterPanelTitle">미술관 선택</span>
+          <div class="panel-actions">
+            <button id="selectAll" type="button">전체</button>
+            <button id="mobileFilterClose" class="mobile-filter-close" type="button" aria-label="미술관 선택 창 닫기">×</button>
+          </div>
         </div>
         <div id="museumFilters" class="filter-list"></div>
       </div>
@@ -88,6 +94,6 @@
 
     </main>
 
-    <script src="./script.js?v=20260608-3"></script>
+    <script src="./script.js?v=20260612-3"></script>
   </body>
 </html>

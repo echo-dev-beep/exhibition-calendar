@@ -1,13 +1,13 @@
 const museums = [
-  { id: "mmca-seoul", name: "국립현대미술관 서울관", area: "서울", color: "#111111", abbr: "MMCA" },
-  { id: "mmca-gwacheon", name: "국립현대미술관 과천관", area: "과천", color: "#111111", abbr: "MMCA" },
-  { id: "mmca-deoksu", name: "국립현대미술관 덕수궁관", area: "서소문/덕수궁", color: "#111111", abbr: "MMCA" },
-  { id: "sema", name: "서울시립미술관", area: "SeMA", color: "#e74336", abbr: "SeMA" },
-  { id: "ilmin", name: "일민미술관", area: "광화문", color: "#222222", abbr: "일민" },
-  { id: "daelim", name: "대림미술관", area: "서촌", color: "#0066b3", abbr: "대림" },
-  { id: "pompidou", name: "퐁피두센터 한화", area: "여의도", color: "#ef3e42", abbr: "퐁피두" },
-  { id: "dmuseum", name: "디뮤지엄", area: "서울숲", color: "#ff6f00", abbr: "디뮤" },
-  { id: "leeum", name: "리움미술관", area: "한남동", color: "#5b5b5b", abbr: "리움" }
+  { id: "mmca-seoul", name: "국립현대미술관 서울관", area: "서울", color: "#111111", abbr: "MMCA", closedWeekdays: [] },
+  { id: "mmca-gwacheon", name: "국립현대미술관 과천관", area: "과천", color: "#111111", abbr: "MMCA", closedWeekdays: [1] },
+  { id: "mmca-deoksu", name: "국립현대미술관 덕수궁관", area: "서소문/덕수궁", color: "#111111", abbr: "MMCA", closedWeekdays: [1] },
+  { id: "sema", name: "서울시립미술관", area: "SeMA", color: "#e74336", abbr: "SeMA", closedWeekdays: [1] },
+  { id: "ilmin", name: "일민미술관", area: "광화문", color: "#222222", abbr: "일민", closedWeekdays: [1] },
+  { id: "daelim", name: "대림미술관", area: "서촌", color: "#0066b3", abbr: "대림", closedWeekdays: [1] },
+  { id: "pompidou", name: "퐁피두센터 한화", area: "여의도", color: "#ef3e42", abbr: "퐁피두", closedWeekdays: [1] },
+  { id: "dmuseum", name: "디뮤지엄", area: "서울숲", color: "#ff6f00", abbr: "디뮤", closedWeekdays: [1] },
+  { id: "leeum", name: "리움미술관", area: "한남동", color: "#5b5b5b", abbr: "리움", closedWeekdays: [1] }
 ];
 
 const events = [
@@ -189,13 +189,13 @@ const events = [
   }
 ];
 
-const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
+const weekdays = ["월", "화", "수", "목", "금", "토", "일"];
 let today = getKstToday();
 
 const state = {
-  view: "month",
+  view: "week",
   spotlight: "today",
-  spotlightCollapsed: false,
+  spotlightCollapsed: window.matchMedia("(max-width: 720px)").matches,
   cursor: new Date(today),
   selected: new Set(museums.map((museum) => museum.id))
 };
@@ -246,7 +246,8 @@ function addDays(date, days) {
 }
 
 function startOfWeek(date) {
-  return addDays(stripTime(date), -date.getDay());
+  const mondayOffset = (date.getDay() + 6) % 7;
+  return addDays(stripTime(date), -mondayOffset);
 }
 
 function endOfWeek(date) {
@@ -307,6 +308,30 @@ function visibleEvents() {
     .sort((a, b) => parseDate(a.start) - parseDate(b.start) || a.title.localeCompare(b.title, "ko"));
 }
 
+function isMuseumClosedOn(museumId, date) {
+  const museum = museumById(museumId);
+  return museum?.closedWeekdays?.includes(date.getDay()) || false;
+}
+
+function eventIsOpenOn(event, date) {
+  return overlaps(event, date, date) && !isMuseumClosedOn(event.museum, date);
+}
+
+function eventIsOpenInRange(event, rangeStart, rangeEnd) {
+  for (let date = new Date(rangeStart); date <= rangeEnd; date = addDays(date, 1)) {
+    if (eventIsOpenOn(event, date)) return true;
+  }
+  return false;
+}
+
+function visibleEventsOpenOn(date) {
+  return visibleEvents().filter((event) => eventIsOpenOn(event, date));
+}
+
+function visibleEventsOpenInRange(rangeStart, rangeEnd) {
+  return visibleEvents().filter((event) => eventIsOpenInRange(event, rangeStart, rangeEnd));
+}
+
 function render() {
   qs("todayLabel").textContent = `오늘 기준 ${formatDate(today)}`;
   qs("monthViewBtn").classList.toggle("active", state.view === "month");
@@ -327,9 +352,7 @@ function renderSpotlightPanel() {
   const weekStart = startOfWeek(today);
   const weekEnd = endOfWeek(today);
   const isToday = state.spotlight === "today";
-  const spotlightEvents = visibleEvents().filter((event) =>
-    isToday ? overlaps(event, today, today) : overlaps(event, weekStart, weekEnd)
-  );
+  const spotlightEvents = isToday ? visibleEventsOpenOn(today) : visibleEventsOpenInRange(weekStart, weekEnd);
   qs("spotlightEyebrow").textContent = isToday ? "Today" : "This Week";
   qs("spotlightTitle").textContent = isToday ? "오늘의 전시" : "이번 주 전시";
   qs("spotlightCount").textContent = `${spotlightEvents.length}건`;
@@ -380,8 +403,7 @@ function renderWeek() {
   qs("calendar").innerHTML = `<div class="weekday-head">${weekdays.map((day) => `<span>${day}</span>`).join("")}</div>${renderWeekCard(
     weekStart,
     weekEnd,
-    state.cursor.getMonth(),
-    weekStart
+    state.cursor.getMonth()
   )}`;
 }
 
@@ -389,7 +411,7 @@ function renderMonthDay(date, activeMonth) {
   const classes = ["month-day"];
   if (date.getMonth() !== activeMonth) classes.push("out");
   if (date.getTime() === today.getTime()) classes.push("today");
-  const dayEvents = visibleEvents().filter((event) => overlaps(event, date, date));
+  const dayEvents = visibleEventsOpenOn(date);
   const dayMuseums = museums
     .filter((museum) => state.selected.has(museum.id))
     .map((museum) => {
@@ -403,7 +425,7 @@ function renderMonthDay(date, activeMonth) {
   return `<div class="${classes.join(" ")}" data-date="${dateValue}" role="button" tabindex="0" aria-label="${formatDate(date)} 주간 달력 보기"><span class="day-num">${date.getDate()}</span><div class="day-dots">${dayMuseums}</div></div>`;
 }
 
-function renderWeekCard(weekStart, weekEnd, activeMonth, rangeStart) {
+function renderWeekCard(weekStart, weekEnd, activeMonth) {
   const days = Array.from({ length: 7 }, (_, index) => {
     const date = addDays(weekStart, index);
     const classes = ["day-cell"];
@@ -412,24 +434,37 @@ function renderWeekCard(weekStart, weekEnd, activeMonth, rangeStart) {
     return `<div class="${classes.join(" ")}"><span class="day-num">${date.getDate()}</span></div>`;
   }).join("");
 
-  const bars = visibleEvents()
-    .filter((event) => overlaps(event, weekStart, weekEnd))
-    .map((event) => {
+  const bars = visibleEventsOpenInRange(weekStart, weekEnd)
+    .flatMap((event) => {
       const museum = museumById(event.museum);
-      const startIndex = Math.max(0, Math.floor((parseDate(event.start) - weekStart) / 86400000));
-      const endIndex = Math.min(6, Math.floor((parseDate(event.end) - weekStart) / 86400000));
       const status = eventStatus(event);
-      const firstVisibleDate = parseDate(event.start) > rangeStart ? parseDate(event.start) : rangeStart;
-      const showLabel = firstVisibleDate >= weekStart && firstVisibleDate <= weekEnd;
-      const label = showLabel
-        ? `<span class="event-icon" aria-hidden="true"></span><span>[${museum.abbr}] ${event.title}</span>`
-        : "";
-      return `<a class="event-bar ${status === "current" ? "current" : "muted"} ${showLabel ? "" : "continuation"}"
-        href="${event.url}" target="_blank" rel="noreferrer"
-        style="grid-column:${startIndex + 1}/${endIndex + 2}; --bar:${museum.color}; background:${museum.color}"
-        title="${museum.name} · ${event.title}">
-        ${label}
-      </a>`;
+      const segments = [];
+      let segmentStart = null;
+
+      for (let index = 0; index < 7; index += 1) {
+        const date = addDays(weekStart, index);
+        if (eventIsOpenOn(event, date)) {
+          if (segmentStart === null) segmentStart = index;
+        } else if (segmentStart !== null) {
+          segments.push([segmentStart, index - 1]);
+          segmentStart = null;
+        }
+      }
+
+      if (segmentStart !== null) segments.push([segmentStart, 6]);
+
+      return segments.map(([startIndex, endIndex], segmentIndex) => {
+        const showLabel = segmentIndex === 0;
+        const label = showLabel
+          ? `<span class="event-icon" aria-hidden="true"></span><span>[${museum.abbr}] ${event.title}</span>`
+          : "";
+        return `<a class="event-bar ${status === "current" ? "current" : "muted"} ${showLabel ? "" : "continuation"}"
+          href="${event.url}" target="_blank" rel="noreferrer"
+          style="grid-column:${startIndex + 1}/${endIndex + 2}; --bar:${museum.color}; background:${museum.color}"
+          title="${museum.name} · ${event.title}">
+          ${label}
+        </a>`;
+      });
     })
     .join("");
 
@@ -476,6 +511,38 @@ qs("weekTabBtn").addEventListener("click", () => {
 qs("spotlightToggle").addEventListener("click", () => {
   state.spotlightCollapsed = !state.spotlightCollapsed;
   render();
+});
+
+function setMobileFilterOpen(open) {
+  document.body.classList.toggle("mobile-filter-open", open);
+  qs("mobileFilterOpen").setAttribute("aria-expanded", String(open));
+  if (open) {
+    qs("filterPanel").setAttribute("role", "dialog");
+    qs("filterPanel").setAttribute("aria-modal", "true");
+  } else {
+    qs("filterPanel").removeAttribute("role");
+    qs("filterPanel").removeAttribute("aria-modal");
+  }
+}
+
+qs("mobileFilterOpen").addEventListener("click", () => {
+  setMobileFilterOpen(true);
+});
+
+qs("mobileFilterClose").addEventListener("click", () => {
+  setMobileFilterOpen(false);
+});
+
+document.addEventListener("click", (event) => {
+  if (!document.body.classList.contains("mobile-filter-open")) return;
+  if (event.target.closest("#filterPanel") || event.target.closest("#mobileFilterOpen")) return;
+  setMobileFilterOpen(false);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.body.classList.contains("mobile-filter-open")) {
+    setMobileFilterOpen(false);
+  }
 });
 
 qs("sidebarToggle").addEventListener("click", () => {
