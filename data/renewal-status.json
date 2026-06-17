@@ -1,55 +1,58 @@
 {
-  "updatedAt": "2026-06-17T03:47:05+09:00",
+  "updatedAt": "2026-06-17T23:38:53+09:00",
   "sources": [
     {
       "museum": "mmca-seoul",
       "name": "국립현대미술관 서울관",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
-        "ok": false,
+        "ok": true,
         "url": "https://www.mmca.go.kr/exhibitions/progressList.do",
-        "error": "fetch failed"
+        "candidates": 0,
+        "merged": 0
       },
       "closures": {
         "ok": false,
         "url": "https://www.mmca.go.kr/visitingInfo/visitingInfo.do",
-        "error": "fetch failed"
+        "error": "HTTP 404"
       }
     },
     {
       "museum": "mmca-gwacheon",
       "name": "국립현대미술관 과천관",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
-        "ok": false,
+        "ok": true,
         "url": "https://www.mmca.go.kr/exhibitions/progressList.do",
-        "error": "fetch failed"
+        "candidates": 0,
+        "merged": 0
       },
       "closures": {
         "ok": false,
         "url": "https://www.mmca.go.kr/visitingInfo/visitingInfo.do",
-        "error": "fetch failed"
+        "error": "HTTP 404"
       }
     },
     {
       "museum": "mmca-deoksu",
       "name": "국립현대미술관 덕수궁관",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
-        "ok": false,
+        "ok": true,
         "url": "https://www.mmca.go.kr/exhibitions/progressList.do",
-        "error": "fetch failed"
+        "candidates": 0,
+        "merged": 0
       },
       "closures": {
         "ok": false,
         "url": "https://www.mmca.go.kr/visitingInfo/visitingInfo.do",
-        "error": "fetch failed"
+        "error": "HTTP 404"
       }
     },
     {
       "museum": "sema",
       "name": "서울시립미술관",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
         "ok": true,
         "url": "https://sema.seoul.go.kr/kr/whatson/landing",
@@ -64,7 +67,7 @@
     {
       "museum": "ilmin",
       "name": "일민미술관",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
         "ok": true,
         "url": "https://ilmin.org/exhibition/",
@@ -79,7 +82,7 @@
     {
       "museum": "daelim",
       "name": "대림미술관",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
         "ok": true,
         "url": "https://www.daelimmuseum.org/exhibition/current",
@@ -94,22 +97,22 @@
     {
       "museum": "pompidou",
       "name": "퐁피두센터 한화",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
-        "ok": false,
+        "ok": true,
         "url": "https://www.centrepompidou-hanwha.kr/",
-        "error": "fetch failed"
+        "candidates": 36,
+        "merged": 0
       },
       "closures": {
-        "ok": false,
-        "url": "https://www.centrepompidou-hanwha.kr/",
-        "error": "fetch failed"
+        "ok": true,
+        "url": "https://www.centrepompidou-hanwha.kr/"
       }
     },
     {
       "museum": "dmuseum",
       "name": "디뮤지엄",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
         "ok": true,
         "url": "https://www.daelimmuseum.org/exhibition/current",
@@ -124,7 +127,7 @@
     {
       "museum": "leeum",
       "name": "리움미술관",
-      "checkedAt": "2026-06-17T03:47:05+09:00",
+      "checkedAt": "2026-06-17T23:38:53+09:00",
       "events": {
         "ok": true,
         "url": "https://www.leeumhoam.org/leeum/exhibition",
